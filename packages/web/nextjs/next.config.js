@@ -11,7 +11,6 @@ const packageJson = require(`${
 
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
-  target: "serverless",
   poweredByHeader: false,
   trailingSlash: true,
   serverRuntimeConfig: {
@@ -26,24 +25,12 @@ module.exports = withBundleAnalyzer({
       })
     );
 
-    // #NEXTJS-HACK
-    // Fix when the app is running inside `node_modules` (https://github.com/vercel/next.js/issues/19739)
-    // TODO: remove this fix when this PR is merged: https://github.com/vercel/next.js/pull/19749
-    const originalExcludeMethod = config.module.rules[0].exclude;
-    config.module.rules[0].exclude = (excludePath) => {
-      if (!originalExcludeMethod(excludePath)) {
-        return false;
-      }
-      return /node_modules/.test(excludePath.replace(config.context, ""));
-    };
+    // Removed legacy exclude override for older Next.js versions
 
     // To avoid issues with fsevents during the build, especially on macOS
     config.externals.push("chokidar");
 
     return config;
-  },
-  future: {
-    excludeDefaultMomentLocales: true
   },
   typescript: {
     // We check typescript errors only during the first build, not during "log4brains build",

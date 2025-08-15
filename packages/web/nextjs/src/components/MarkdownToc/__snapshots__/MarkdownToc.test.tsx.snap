@@ -5,7 +5,7 @@ exports[`Toc renders correctly 1`] = `
   className="makeStyles-root-1"
 >
   <h6
-    className="MuiTypography-root makeStyles-title-2 MuiTypography-subtitle2"
+    className="MuiTypography-root MuiTypography-subtitle2 makeStyles-title-2 css-ati914-MuiTypography-root"
   >
     Table of contents
   </h6>
@@ -14,7 +14,7 @@ exports[`Toc renders correctly 1`] = `
   >
     <li>
       <a
-        className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+        className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
         href="#header-1"
         onBlur={[Function]}
         onFocus={[Function]}
@@ -26,7 +26,7 @@ exports[`Toc renders correctly 1`] = `
       >
         <li>
           <a
-            className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+            className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
             href="#header-11"
             onBlur={[Function]}
             onFocus={[Function]}
@@ -38,7 +38,7 @@ exports[`Toc renders correctly 1`] = `
           >
             <li>
               <a
-                className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+                className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
                 href="#header-111"
                 onBlur={[Function]}
                 onFocus={[Function]}
@@ -51,7 +51,7 @@ exports[`Toc renders correctly 1`] = `
             </li>
             <li>
               <a
-                className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+                className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
                 href="#header-112"
                 onBlur={[Function]}
                 onFocus={[Function]}
@@ -66,7 +66,7 @@ exports[`Toc renders correctly 1`] = `
         </li>
         <li>
           <a
-            className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+            className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
             href="#header-12"
             onBlur={[Function]}
             onFocus={[Function]}
@@ -78,19 +78,17 @@ exports[`Toc renders correctly 1`] = `
           >
             <li>
               <a
-                className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+                className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
                 href="#"
                 onBlur={[Function]}
                 onFocus={[Function]}
-              >
-                
-              </a>
+              />
               <ul
                 className="makeStyles-tocUl-3"
               >
                 <li>
                   <a
-                    className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+                    className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
                     href="#subtitle-without-direct-parent"
                     onBlur={[Function]}
                     onFocus={[Function]}
@@ -109,7 +107,7 @@ exports[`Toc renders correctly 1`] = `
     </li>
     <li>
       <a
-        className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+        className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
         href="#header-2"
         onBlur={[Function]}
         onFocus={[Function]}

@@ -5,6 +5,7 @@ module.exports = {
   ...base,
   name: packageJson.name,
   displayName: packageJson.name,
+  testEnvironment: "jsdom",
   transform: {
     "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
   }

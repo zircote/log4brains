@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
+import { makeStyles, createStyles } from "@mui/styles";
 import {
   Typography,
   Button,
@@ -8,14 +8,14 @@ import {
   Tooltip,
   Link as MuiLink,
   Hidden
-} from "@material-ui/core";
+} from "@mui/material";
 import {
   ArrowBack as ArrowBackIcon,
   ArrowForward as ArrowForwardIcon
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import Head from "next/head";
 import Link from "next/link";
-import { Alert } from "@material-ui/lab";
+import Alert from "@mui/material/Alert";
 import { CustomTheme } from "../../mui";
 import { Markdown, MarkdownToc, TwoColContent } from "../../components";
 // eslint-disable-next-line import/no-cycle

@@ -1,11 +1,25 @@
 import { AdrDtoStatus } from "@log4brains/core";
 import React from "react";
-import TestRenderer from "react-test-renderer";
+import TestRenderer, { act } from "react-test-renderer";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { AdrHeader } from "./AdrHeader";
+
+function renderWithTheme(element: React.ReactElement) {
+  let tree: TestRenderer.ReactTestRenderer | undefined;
+  void act(() => {
+    tree = TestRenderer.create(
+      <ThemeProvider theme={createTheme()}>{element}</ThemeProvider>
+    );
+  });
+  if (!tree) {
+    throw new Error("Failed to render component");
+  }
+  return tree;
+}
 
 describe("AdrHeader", () => {
   it("renders correctly with deciders", () => {
-    const tree = TestRenderer.create(
+    const tree = renderWithTheme(
       <AdrHeader
         adr={{
           slug: "test",
@@ -17,7 +31,7 @@ describe("AdrHeader", () => {
           deciders: ["John Doe", "Lorem Ipsum", "Ipsum Dolor"],
           body: {
             enhancedMdx: "# Test",
-            rawMarkdown: "#Test"
+            rawMarkdown: "#Test",
           },
           creationDate: new Date(2020, 0, 1).toJSON(),
           lastEditDate: new Date(2020, 0, 1).toJSON(),
@@ -25,8 +39,8 @@ describe("AdrHeader", () => {
           publicationDate: null,
           file: {
             relativePath: "test.md",
-            absolutePath: "/test.md"
-          }
+            absolutePath: "/test.md",
+          },
         }}
       />
     );
@@ -34,7 +48,7 @@ describe("AdrHeader", () => {
   });
 
   it("renders correctly without deciders", () => {
-    const tree = TestRenderer.create(
+    const tree = renderWithTheme(
       <AdrHeader
         adr={{
           slug: "test",
@@ -46,7 +60,7 @@ describe("AdrHeader", () => {
           deciders: [],
           body: {
             enhancedMdx: "# Test",
-            rawMarkdown: "#Test"
+            rawMarkdown: "#Test",
           },
           creationDate: new Date(2020, 0, 1).toJSON(),
           lastEditDate: new Date(2020, 0, 1).toJSON(),
@@ -54,8 +68,8 @@ describe("AdrHeader", () => {
           publicationDate: null,
           file: {
             relativePath: "test.md",
-            absolutePath: "/test.md"
-          }
+            absolutePath: "/test.md",
+          },
         }}
       />
     );
@@ -63,7 +77,7 @@ describe("AdrHeader", () => {
   });
 
   it("renders correctly with package", () => {
-    const tree = TestRenderer.create(
+    const tree = renderWithTheme(
       <AdrHeader
         adr={{
           slug: "test",
@@ -75,7 +89,7 @@ describe("AdrHeader", () => {
           deciders: [],
           body: {
             enhancedMdx: "# Test",
-            rawMarkdown: "#Test"
+            rawMarkdown: "#Test",
           },
           creationDate: new Date(2020, 0, 1).toJSON(),
           lastEditDate: new Date(2020, 0, 1).toJSON(),
@@ -83,8 +97,8 @@ describe("AdrHeader", () => {
           publicationDate: null,
           file: {
             relativePath: "test.md",
-            absolutePath: "/test.md"
-          }
+            absolutePath: "/test.md",
+          },
         }}
       />
     );
@@ -92,7 +106,7 @@ describe("AdrHeader", () => {
   });
 
   it("renders correctly with tags", () => {
-    const tree = TestRenderer.create(
+    const tree = renderWithTheme(
       <AdrHeader
         adr={{
           slug: "test",
@@ -104,7 +118,7 @@ describe("AdrHeader", () => {
           deciders: [],
           body: {
             enhancedMdx: "# Test",
-            rawMarkdown: "#Test"
+            rawMarkdown: "#Test",
           },
           creationDate: new Date(2020, 0, 1).toJSON(),
           lastEditDate: new Date(2020, 0, 1).toJSON(),
@@ -112,8 +126,8 @@ describe("AdrHeader", () => {
           publicationDate: null,
           file: {
             relativePath: "test.md",
-            absolutePath: "/test.md"
-          }
+            absolutePath: "/test.md",
+          },
         }}
       />
     );
@@ -121,7 +135,7 @@ describe("AdrHeader", () => {
   });
 
   it("renders correctly with publication date", () => {
-    const tree = TestRenderer.create(
+    const tree = renderWithTheme(
       <AdrHeader
         adr={{
           slug: "test",
@@ -133,7 +147,7 @@ describe("AdrHeader", () => {
           deciders: [],
           body: {
             enhancedMdx: "# Test",
-            rawMarkdown: "#Test"
+            rawMarkdown: "#Test",
           },
           creationDate: new Date(2020, 0, 1).toJSON(),
           lastEditDate: new Date(2020, 0, 1).toJSON(),
@@ -141,8 +155,8 @@ describe("AdrHeader", () => {
           publicationDate: new Date(2020, 0, 2).toJSON(),
           file: {
             relativePath: "test.md",
-            absolutePath: "/test.md"
-          }
+            absolutePath: "/test.md",
+          },
         }}
       />
     );
@@ -150,7 +164,7 @@ describe("AdrHeader", () => {
   });
 
   it("shows the Github repository button", () => {
-    const tree = TestRenderer.create(
+    const tree = renderWithTheme(
       <AdrHeader
         adr={{
           slug: "test",
@@ -162,7 +176,7 @@ describe("AdrHeader", () => {
           deciders: [],
           body: {
             enhancedMdx: "# Test",
-            rawMarkdown: "#Test"
+            rawMarkdown: "#Test",
           },
           creationDate: new Date(2020, 0, 1).toJSON(),
           lastEditDate: new Date(2020, 0, 1).toJSON(),
@@ -170,12 +184,12 @@ describe("AdrHeader", () => {
           publicationDate: new Date(2020, 0, 2).toJSON(),
           file: {
             relativePath: "test.md",
-            absolutePath: "/test.md"
+            absolutePath: "/test.md",
           },
           repository: {
             provider: "github",
-            viewUrl: "https://github.com/xxx"
-          }
+            viewUrl: "https://github.com/xxx",
+          },
         }}
       />
     );
@@ -183,7 +197,7 @@ describe("AdrHeader", () => {
   });
 
   it("shows the Gitlab repository button", () => {
-    const tree = TestRenderer.create(
+    const tree = renderWithTheme(
       <AdrHeader
         adr={{
           slug: "test",
@@ -195,7 +209,7 @@ describe("AdrHeader", () => {
           deciders: [],
           body: {
             enhancedMdx: "# Test",
-            rawMarkdown: "#Test"
+            rawMarkdown: "#Test",
           },
           creationDate: new Date(2020, 0, 1).toJSON(),
           lastEditDate: new Date(2020, 0, 1).toJSON(),
@@ -203,12 +217,12 @@ describe("AdrHeader", () => {
           publicationDate: new Date(2020, 0, 2).toJSON(),
           file: {
             relativePath: "test.md",
-            absolutePath: "/test.md"
+            absolutePath: "/test.md",
           },
           repository: {
             provider: "gitlab",
-            viewUrl: "https://gitlab.com/xxx"
-          }
+            viewUrl: "https://gitlab.com/xxx",
+          },
         }}
       />
     );
@@ -216,7 +230,7 @@ describe("AdrHeader", () => {
   });
 
   it("shows the generic repository button", () => {
-    const tree = TestRenderer.create(
+    const tree = renderWithTheme(
       <AdrHeader
         adr={{
           slug: "test",
@@ -228,7 +242,7 @@ describe("AdrHeader", () => {
           deciders: [],
           body: {
             enhancedMdx: "# Test",
-            rawMarkdown: "#Test"
+            rawMarkdown: "#Test",
           },
           creationDate: new Date(2020, 0, 1).toJSON(),
           lastEditDate: new Date(2020, 0, 1).toJSON(),
@@ -236,12 +250,12 @@ describe("AdrHeader", () => {
           publicationDate: new Date(2020, 0, 2).toJSON(),
           file: {
             relativePath: "test.md",
-            absolutePath: "/test.md"
+            absolutePath: "/test.md",
           },
           repository: {
             provider: "generic",
-            viewUrl: "https://foo.com/xxx"
-          }
+            viewUrl: "https://foo.com/xxx",
+          },
         }}
       />
     );
@@ -249,7 +263,7 @@ describe("AdrHeader", () => {
   });
 
   it("shows the locally edit button", () => {
-    const tree = TestRenderer.create(
+    const tree = renderWithTheme(
       <AdrHeader
         adr={{
           slug: "test",
@@ -261,7 +275,7 @@ describe("AdrHeader", () => {
           deciders: [],
           body: {
             enhancedMdx: "# Test",
-            rawMarkdown: "#Test"
+            rawMarkdown: "#Test",
           },
           creationDate: new Date(2020, 0, 1).toJSON(),
           lastEditDate: new Date(2020, 0, 1).toJSON(),
@@ -269,12 +283,12 @@ describe("AdrHeader", () => {
           publicationDate: new Date(2020, 0, 2).toJSON(),
           file: {
             relativePath: "test.md",
-            absolutePath: "/test.md"
+            absolutePath: "/test.md",
           },
           repository: {
             provider: "generic",
-            viewUrl: "https://foo.com/xxx"
-          }
+            viewUrl: "https://foo.com/xxx",
+          },
         }}
         locallyEditable
       />

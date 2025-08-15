@@ -11,22 +11,21 @@ import {
   DialogContentText,
   DialogTitle,
   Button
-} from "@material-ui/core";
-import {
-  Timeline,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-  TimelineItem,
-  TimelineOppositeContent,
-  TimelineSeparator
-} from "@material-ui/lab";
-import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
+} from "@mui/material";
+import Timeline from "@mui/lab/Timeline";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import { createStyles, makeStyles } from "@mui/styles";
+import type { Theme } from "@mui/material/styles";
 import {
   EmojiFlags as EmojiFlagsIcon,
   CropFree as CropFreeIcon,
   Add as AddIcon
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import Link from "next/link";
 import clsx from "clsx";
 import { Log4brainsMode, Log4brainsModeContext } from "../../../../contexts";

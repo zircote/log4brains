@@ -37,10 +37,12 @@ export function ConnectedSearchBox(props: ConnectedSearchBoxProps) {
     }
   };
 
-  const handleFocus = async () => {
+  const handleFocus = () => {
     // We re-create the search instance on each focus in preview mode
     if (!searchInstance || mode === Log4brainsMode.preview) {
-      setSearchInstance(await createSearchInstance(mode));
+      void (async () => {
+        setSearchInstance(await createSearchInstance(mode));
+      })();
     }
   };
 

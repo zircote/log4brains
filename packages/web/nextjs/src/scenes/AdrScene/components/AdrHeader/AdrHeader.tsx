@@ -9,8 +9,9 @@ import {
   Typography,
   IconButton,
   SvgIcon
-} from "@material-ui/core";
-import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
+} from "@mui/material";
+import { createStyles, makeStyles } from "@mui/styles";
+import type { Theme } from "@mui/material/styles";
 import {
   CropFree as CropFreeIcon,
   Event as EventIcon,
@@ -19,7 +20,7 @@ import {
   Label as LabelIcon,
   Edit as EditIcon,
   Close as CloseIcon
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import {
   AiFillGithub as GithubRIcon,
   AiFillGitlab as GitlabRIcon
@@ -222,7 +223,9 @@ export function AdrHeader({
                 <Tooltip title="Edit locally">
                   <Button
                     color="secondary"
-                    onClick={() => editLocally(adr.slug)}
+                    onClick={() => {
+                      void editLocally(adr.slug);
+                    }}
                   >
                     <EditIcon />
                   </Button>

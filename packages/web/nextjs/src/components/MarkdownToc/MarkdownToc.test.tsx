@@ -1,6 +1,7 @@
 import React from "react";
 import { compiler as mdCompiler } from "markdown-to-jsx";
-import TestRenderer from "react-test-renderer";
+import TestRenderer, { act } from "react-test-renderer";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { MarkdownHeading } from "../MarkdownHeading";
 import { MarkdownToc } from "./MarkdownToc";
 
@@ -27,21 +28,21 @@ const options = {
   overrides: {
     h1: {
       component: MarkdownHeading,
-      props: { variant: "h1" }
+      props: { variant: "h1" },
     },
     h2: {
       component: MarkdownHeading,
-      props: { variant: "h2" }
+      props: { variant: "h2" },
     },
     h3: {
       component: MarkdownHeading,
-      props: { variant: "h3" }
+      props: { variant: "h3" },
     },
     h4: {
       component: MarkdownHeading,
-      props: { variant: "h4" }
-    }
-  }
+      props: { variant: "h4" },
+    },
+  },
 };
 
 describe("Toc", () => {
@@ -50,9 +51,15 @@ describe("Toc", () => {
   }>;
 
   it("renders correctly", () => {
-    const tree = TestRenderer.create(
-      <MarkdownToc content={content.props.children} />
-    );
+    let tree: TestRenderer.ReactTestRenderer | undefined;
+    void act(() => {
+      tree = TestRenderer.create(
+        <ThemeProvider theme={createTheme()}>
+          <MarkdownToc content={content.props.children} />
+        </ThemeProvider>
+      );
+    });
+    if (!tree) throw new Error("Failed to render");
     expect(tree.toJSON()).toMatchSnapshot();
   });
 });

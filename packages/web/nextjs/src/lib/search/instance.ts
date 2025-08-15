@@ -23,7 +23,7 @@ export async function createSearchInstance(
     )
   ).json()) as unknown;
   if (!isSerializedIndex(index)) {
-    throw new Error(`Invalid Search SerializedIndex: ${index}`);
+    throw new Error("Invalid Search SerializedIndex");
   }
   return Search.createFromSerializedIndex(index);
 }

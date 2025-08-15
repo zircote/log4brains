@@ -4,7 +4,7 @@ import {
   InjectionMode,
   asClass,
   AwilixContainer,
-  asFunction
+  asFunction,
 } from "awilix";
 import { Log4brainsConfig } from "@src/infrastructure/config";
 import * as adrCommandHandlers from "@src/adr/application/command-handlers";
@@ -23,22 +23,26 @@ export function buildContainer(
   workdir = "."
 ): AwilixContainer {
   const container: AwilixContainer = createContainer({
-    injectionMode: InjectionMode.PROXY
+    injectionMode: InjectionMode.PROXY,
   });
 
   // Configuration & misc
   container.register({
     config: asValue(config),
     workdir: asValue(workdir),
-    fileWatcher: asClass(FileWatcher).singleton()
+    fileWatcher: asClass(FileWatcher).singleton(),
   });
 
-  // Repositories
-  Object.values(repositories).forEach((Repository) => {
-    container.register(
-      lowerCaseFirstLetter(Repository.name),
-      asClass<unknown>(Repository).singleton()
-    );
+  // Repositories: register using export names to avoid relying on class names
+  Object.entries(repositories).forEach(([exportName, Repository]) => {
+    if (typeof Repository === "function") {
+      container.register(
+        lowerCaseFirstLetter(exportName),
+        asClass<unknown>(
+          Repository as unknown as new (...args: unknown[]) => unknown
+        ).singleton()
+      );
+    }
   });
 
   // Command handlers
@@ -60,7 +64,7 @@ export function buildContainer(
       });
 
       return bus;
-    }).singleton()
+    }).singleton(),
   });
 
   // Query handlers
@@ -82,7 +86,7 @@ export function buildContainer(
       });
 
       return bus;
-    }).singleton()
+    }).singleton(),
   });
 
   return container;

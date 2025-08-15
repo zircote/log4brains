@@ -6,15 +6,11 @@ import {
   InputBaseProps,
   IconButton,
   Fade
-} from "@material-ui/core";
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  fade
-} from "@material-ui/core/styles";
-import { Search as SearchIcon, Close as ClearIcon } from "@material-ui/icons";
-import { AutocompleteRenderInputParams } from "@material-ui/lab";
+} from "@mui/material";
+import { createStyles, makeStyles } from "@mui/styles";
+import { alpha, type Theme } from "@mui/material/styles";
+import { Search as SearchIcon, Close as ClearIcon } from "@mui/icons-material";
+import { AutocompleteRenderInputParams } from "@mui/material";
 
 export type SearchBarProps = InputBaseProps &
   AutocompleteRenderInputParams & {
@@ -36,11 +32,11 @@ const useStyles = makeStyles((theme: Theme) => {
         : "inherit",
       backgroundColor: open
         ? theme.palette.common.white
-        : fade(theme.palette.common.white, 0.15),
+        : alpha(theme.palette.common.white, 0.15),
       "&:hover": {
         backgroundColor: open
           ? theme.palette.common.white
-          : fade(theme.palette.common.white, 0.25)
+          : alpha(theme.palette.common.white, 0.25)
       }
     }),
     inputInput: {

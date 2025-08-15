@@ -17,9 +17,9 @@ import {
   Fade,
   Hidden,
   IconButton
-} from "@material-ui/core";
-import { Menu as MenuIcon, Close as CloseIcon } from "@material-ui/icons";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+} from "@mui/material";
+import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
+import { createStyles, makeStyles } from "@mui/styles";
 // import {
 //   ChevronRight as ChevronRightIcon,
 //   PlaylistAddCheck as PlaylistAddCheckIcon
@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme: CustomTheme) => {
       [theme.breakpoints.up("sm")]: {
         display: "flex",
         alignItems: "center",
-        width: drawerWidth - theme.spacing(3),
+        width: `calc(${drawerWidth}px - ${theme.spacing(3)})`,
         flexGrow: 0,
         flexShrink: 0,
         cursor: "pointer"

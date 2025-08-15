@@ -1,10 +1,5 @@
-import {
-  createMuiTheme,
-  darken,
-  Theme,
-  responsiveFontSizes
-} from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
+import { createTheme, darken, Theme, responsiveFontSizes } from "@mui/material/styles";
+import { red } from "@mui/material/colors";
 
 export type CustomTheme = Theme & {
   custom: {
@@ -21,7 +16,7 @@ const titleFontFamily = '"Roboto Slab", "Noto Serif", "Times New Roman", serif';
 
 export const theme: CustomTheme = {
   ...responsiveFontSizes(
-    createMuiTheme({
+    createTheme({
       palette: {
         primary: {
           main: primary
@@ -58,19 +53,26 @@ export const theme: CustomTheme = {
           fontFamily: titleFontFamily
         }
       },
-      props: {
+      components: {
         MuiLink: {
-          underline: "none"
-        }
-      },
-      overrides: {
+          defaultProps: {
+            underline: "none"
+          },
+          styleOverrides: {
+            root: {
+              "&:hover": {
+                color: darken(primary, 0.3)
+              }
+            }
+          }
+        },
         MuiCssBaseline: {
-          "@global": {
+          styleOverrides: {
             html: {
               maxWidth: "100%"
             },
             body: {
-              padding: "0 !important", // for storybook
+              padding: "0 !important",
               maxWidth: "100%"
             },
             blockquote: {
@@ -78,13 +80,6 @@ export const theme: CustomTheme = {
               padding: "0 1em",
               borderLeft: "0.25em solid #F8F8F8",
               color: "#9e9e9e"
-            }
-          }
-        },
-        MuiLink: {
-          root: {
-            "&:hover": {
-              color: darken(primary, 0.3)
             }
           }
         }

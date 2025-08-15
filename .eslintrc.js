@@ -16,7 +16,7 @@ module.exports = {
     "dist",
     "node_modules"
   ],
-  plugins: ["jest", "sonarjs", "promise", "@typescript-eslint", "react"],
+  plugins: ["jest", "sonarjs", "promise", "@typescript-eslint", "react", "import"],
   extends: [
     "eslint:recommended",
     "plugin:jest/recommended",
@@ -27,11 +27,9 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier",
-    "prettier/@typescript-eslint",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "airbnb/hooks",
-    "prettier/react"
+    "airbnb/hooks"
   ],
   rules: {
     "import/prefer-default-export": "off", // @adr 20200927-avoid-default-exports
@@ -51,6 +49,13 @@ module.exports = {
     "react/jsx-props-no-spreading": "off", // For HOC
     "no-void": [2, { allowAsStatement: true }], // For React.useEffect() with async functions
     "react/display-name": "off"
+    ,
+    "@typescript-eslint/no-unsafe-argument": "off"
+  },
+  settings: {
+    react: {
+      version: "detect"
+    }
   },
   overrides: [
     {
@@ -85,7 +90,8 @@ module.exports = {
         "max-classes-per-file": "off",
         "import/no-extraneous-dependencies": "off",
         "no-new": "off",
-        "no-empty": "off"
+        "no-empty": "off",
+        "jest/prefer-to-be": "off"
       }
     }
   ]

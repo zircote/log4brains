@@ -1,8 +1,8 @@
 import chalk from "chalk";
 import build from "next/dist/build";
 import exportApp from "next/dist/export";
-import loadConfig from "next/dist/next-server/server/config";
-import { PHASE_EXPORT } from "next/dist/next-server/lib/constants";
+import loadConfig from "next/dist/server/config";
+import { PHASE_EXPORT } from "next/constants";
 import path from "path";
 import mkdirp from "mkdirp";
 import { makeBadge } from "badge-maker";
@@ -42,8 +42,8 @@ export async function buildCommand(
       ...(nextConfig.env && typeof nextConfig.env === "object"
         ? nextConfig.env
         : {}),
-      NEXT_PUBLIC_LOG4BRAINS_STATIC: "1"
-    }
+      NEXT_PUBLIC_LOG4BRAINS_STATIC: "1",
+    },
   };
 
   appConsole.debug("Run `next build`...");
@@ -58,12 +58,21 @@ export async function buildCommand(
 
   appConsole.debug("Run `next export`...");
   await execNext(async () => {
-    await exportApp(
+    const exportFn = exportApp as unknown as (
+      dir: string,
+      options: { outdir: string },
+      config: unknown
+    ) => Promise<void>;
+    const loadConfigFn = loadConfig as unknown as (
+      phase: string,
+      dir: string,
+      conf: unknown
+    ) => Promise<unknown>;
+
+    await exportFn(
       nextDir,
-      {
-        outdir: outPath
-      },
-      await loadConfig(PHASE_EXPORT, nextDir, nextCustomConfig) // Configuration is not handled like in build() here
+      { outdir: outPath },
+      await loadConfigFn(PHASE_EXPORT, nextDir, nextCustomConfig)
     );
   });
 
@@ -103,7 +112,7 @@ export async function buildCommand(
       path.join(outPath, "data", buildId, "adrs.json"),
       JSON.stringify(adrs.map(toAdrLight)),
       "utf-8"
-    )
+    ),
   ];
   await Promise.all(promises);
 
@@ -113,7 +122,7 @@ export async function buildCommand(
     makeBadge({
       label: "ADRs",
       message: adrs.length.toString(),
-      color: "#FF007B"
+      color: "#FF007B",
     })
   );
 

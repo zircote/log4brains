@@ -2,12 +2,12 @@ import React, { useEffect, useMemo } from "react";
 import { compiler as mdCompiler } from "markdown-to-jsx";
 import { useRouter } from "next/router";
 import hljs from "highlight.js";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
+import { makeStyles, createStyles } from "@mui/styles";
 import {
   Typography,
   Link as MuiLink,
   TypographyProps
-} from "@material-ui/core";
+} from "@mui/material";
 import { CustomTheme } from "../../mui";
 import { AdrLink } from "./components";
 import { MarkdownHeading } from "../MarkdownHeading";
@@ -82,9 +82,9 @@ export function Markdown({ children, onCompiled }: MarkdownProps) {
 
   const router = useRouter();
 
-  const renderedMarkdown = useMemo(
+  const renderedMarkdown = useMemo<React.ReactElement>(
     () =>
-      mdCompiler(
+      (mdCompiler(
         children.replace(
           // Fix for `index.md`'s adr-workflow.png image path
           // TODO: support local images (https://github.com/thomvaill/log4brains/issues/4)
@@ -92,7 +92,7 @@ export function Markdown({ children, onCompiled }: MarkdownProps) {
           `(${router?.basePath}$1)`
         ),
         options
-      ),
+      ) as unknown as React.ReactElement),
     [children, router]
   );
 

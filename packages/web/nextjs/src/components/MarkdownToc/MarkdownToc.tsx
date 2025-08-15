@@ -1,6 +1,7 @@
 import React from "react";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { Link as MuiLink, Typography } from "@material-ui/core";
+import { makeStyles, createStyles } from "@mui/styles";
+import type { Theme } from "@mui/material/styles";
+import { Link as MuiLink, Typography } from "@mui/material";
 import clsx from "clsx";
 import {
   Toc as TocModel,

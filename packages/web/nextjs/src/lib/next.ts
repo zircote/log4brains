@@ -28,7 +28,7 @@ function isL4bNextConfig(config: unknown): config is L4bNextConfig {
 export function getConfig(): L4bNextConfig {
   const config = getNextConfig() as unknown;
   if (!isL4bNextConfig(config)) {
-    throw new Error(`Invalid Next.js config object: ${config}`);
+    throw new Error("Invalid Next.js config object");
   }
   return config;
 }

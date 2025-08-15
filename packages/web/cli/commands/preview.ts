@@ -1,6 +1,6 @@
 import next from "next";
 import { createServer } from "http";
-import SocketIO from "socket.io";
+import { Server as SocketIOServer } from "socket.io";
 import chalk from "chalk";
 import open from "open";
 import type { AppConsole } from "@log4brains/cli-common";
@@ -51,7 +51,7 @@ export async function previewCommand(
   const srv = createServer(app.getRequestHandler());
 
   // FileWatcher with Socket.io
-  const io = SocketIO(srv);
+  const io = new SocketIOServer(srv);
 
   const { fileWatcher } = getL4bInstance();
   fileWatcher.subscribe((event) => {
