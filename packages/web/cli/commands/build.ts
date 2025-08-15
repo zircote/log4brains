@@ -1,6 +1,7 @@
 import chalk from "chalk";
 import build from "next/dist/build";
 import exportApp from "next/dist/export";
+import { trace as nextTrace } from "next/dist/trace";
 import loadConfig from "next/dist/server/config";
 import { PHASE_EXPORT } from "next/constants";
 import path from "path";
@@ -31,12 +32,10 @@ export async function buildCommand(
     unknown
   >;
 
-  // We use a different distDir than the preview mode
-  // because getStaticPath()'s `fallback` config is somehow cached
-  const distDir = ".next-export";
+  // Use the default Next.js dist directory
+  const distDir = ".next";
   const nextCustomConfig = {
     ...nextConfig,
-    distDir,
     basePath,
     env: {
       ...(nextConfig.env && typeof nextConfig.env === "object"
@@ -60,8 +59,13 @@ export async function buildCommand(
   await execNext(async () => {
     const exportFn = exportApp as unknown as (
       dir: string,
-      options: { outdir: string },
-      config: unknown
+      options: {
+        outdir: string;
+        nextConfig?: unknown;
+        enabledDirectories?: { app: boolean; pages: boolean };
+        numWorkers?: number;
+      },
+      span?: unknown
     ) => Promise<void>;
     const loadConfigFn = loadConfig as unknown as (
       phase: string,
@@ -69,10 +73,30 @@ export async function buildCommand(
       conf: unknown
     ) => Promise<unknown>;
 
+    const resolvedConfig = await loadConfigFn(
+      PHASE_EXPORT,
+      nextDir,
+      nextCustomConfig
+    );
+
+    type TraceSpan = {
+      traceChild: (name: string) => TraceSpan;
+      traceAsyncFn: <T>(fn: () => Promise<T>) => Promise<T>;
+    };
+    const span: TraceSpan = (nextTrace as unknown as (name: string) => TraceSpan)(
+      "log4brains-export"
+    );
+
     await exportFn(
       nextDir,
-      { outdir: outPath },
-      await loadConfigFn(PHASE_EXPORT, nextDir, nextCustomConfig)
+      {
+        outdir: outPath,
+        nextConfig: resolvedConfig,
+        // Hint Next export about enabled directories; our app uses the Pages router
+        enabledDirectories: { app: false, pages: true },
+        numWorkers: 1,
+      },
+      span as unknown
     );
   });
 

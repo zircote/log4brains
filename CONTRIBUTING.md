@@ -42,6 +42,28 @@ log4brains init
 
 When you are done, run `yarn unlink-cli && npm install -g log4brains` to use the official version again.
 
+### Optional native dependencies (file watching)
+
+To make installs stable across platforms and Node versions in CI and local dev, this repo opts out of optional native dependencies by default via a root `.yarnrc` setting:
+
+```
+ignore-optional true
+```
+
+This primarily skips packages like `@parcel/watcher` that otherwise attempt a native build and may fail on newer Node versions (e.g., Node 24) or non‑x64 architectures (e.g., ARM64) used by Docker/act.
+
+If you want native file watching locally, you can override this setting for your current install:
+
+```
+rm -rf node_modules
+yarn install --no-ignore-optional
+```
+
+Notes:
+- Re‑running a plain `yarn install` will revert to skipping optional deps, because the `.yarnrc` setting applies by default.
+- If you re‑enable optional deps, ensure you have the necessary build toolchain (Python, C/C++ compiler, headers) for node‑gyp on your OS/architecture.
+- Recommended Node for this repo is Node 22 for development and E2E. Some native packages may not yet ship prebuilds for Node 24.
+
 ## Coding standards
 
 Ensure that your code follows our style guidelines and is fully tested. We use ESLint for code linting, and Prettier for code formatting.
