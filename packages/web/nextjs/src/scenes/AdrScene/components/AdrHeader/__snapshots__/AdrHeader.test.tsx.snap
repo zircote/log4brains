@@ -104,7 +104,7 @@ exports[`AdrHeader renders correctly with deciders 1`] = `
               strokeLinejoin="round"
               strokeWidth="2"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -252,7 +252,7 @@ exports[`AdrHeader renders correctly with package 1`] = `
               strokeLinejoin="round"
               strokeWidth="2"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -400,7 +400,7 @@ exports[`AdrHeader renders correctly with publication date 1`] = `
               strokeLinejoin="round"
               strokeWidth="2"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -570,7 +570,7 @@ exports[`AdrHeader renders correctly with tags 1`] = `
               strokeLinejoin="round"
               strokeWidth="2"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -700,7 +700,7 @@ exports[`AdrHeader renders correctly without deciders 1`] = `
               strokeLinejoin="round"
               strokeWidth="2"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -848,7 +848,7 @@ exports[`AdrHeader shows the Github repository button 1`] = `
               strokeLinejoin="round"
               strokeWidth="2"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -903,7 +903,7 @@ exports[`AdrHeader shows the Github repository button 1`] = `
               stroke="currentColor"
               strokeWidth="0"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -1048,7 +1048,7 @@ exports[`AdrHeader shows the Gitlab repository button 1`] = `
               strokeLinejoin="round"
               strokeWidth="2"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -1103,7 +1103,7 @@ exports[`AdrHeader shows the Gitlab repository button 1`] = `
               stroke="currentColor"
               strokeWidth="0"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -1248,7 +1248,7 @@ exports[`AdrHeader shows the generic repository button 1`] = `
               strokeLinejoin="round"
               strokeWidth="2"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -1303,7 +1303,7 @@ exports[`AdrHeader shows the generic repository button 1`] = `
               stroke="currentColor"
               strokeWidth="0"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -1449,7 +1449,7 @@ exports[`AdrHeader shows the locally edit button 1`] = `
               strokeLinejoin="round"
               strokeWidth="2"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }
@@ -1504,7 +1504,7 @@ exports[`AdrHeader shows the locally edit button 1`] = `
               stroke="currentColor"
               strokeWidth="0"
               style={
-                Object {
+                {
                   "color": undefined,
                 }
               }

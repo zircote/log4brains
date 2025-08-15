@@ -1,12 +1,21 @@
 const base = require("../../../jest.config.base");
-const packageJson = require("./package");
+const packageJson = require("../package.json");
 
 module.exports = {
   ...base,
-  name: packageJson.name,
+  preset: "ts-jest",
   displayName: packageJson.name,
   testEnvironment: "jsdom",
   transform: {
-    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    "^.+\\.(ts|tsx)$": [
+      "ts-jest",
+      {
+        diagnostics: false,
+        tsconfig: {
+          jsx: "react-jsx",
+          isolatedModules: true
+        }
+      }
+    ]
   }
 };

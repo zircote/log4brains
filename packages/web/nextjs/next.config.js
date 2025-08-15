@@ -13,6 +13,11 @@ module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   poweredByHeader: false,
   trailingSlash: true,
+  // Disable ESLint during production builds to avoid requiring it at runtime
+  // in consumer environments (e.g., when running via global CLI in temp dirs)
+  eslint: {
+    ignoreDuringBuilds: true
+  },
   serverRuntimeConfig: {
     PROJECT_ROOT: __dirname, // https://github.com/vercel/next.js/issues/8251
     VERSION: packageJson.version

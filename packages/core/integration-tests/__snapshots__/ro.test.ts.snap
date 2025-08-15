@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`E2E tests / RO getAdrBySlug() existing ADR 1`] = `
-Object {
-  "body": Object {
+{
+  "body": {
     "enhancedMdx": "
 Technical Story: lorem ipsum
 
@@ -33,11 +33,11 @@ Lorem ipsum.
 ",
   },
   "creationDate": "2020-09-25T16:34:23.000Z",
-  "deciders": Array [
+  "deciders": [
     "John Doe",
     "Foo bar",
   ],
-  "file": Object {
+  "file": {
     "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20200101-first-adr.md",
     "relativePath": "docs/adr/20200101-first-adr.md",
   },
@@ -48,7 +48,7 @@ Lorem ipsum.
   "slug": "20200101-first-adr",
   "status": "accepted",
   "supersededBy": null,
-  "tags": Array [
+  "tags": [
     "foo",
     "bar",
   ],
@@ -57,7 +57,7 @@ Lorem ipsum.
 `;
 
 exports[`E2E tests / RO searchAdrs() all 1`] = `
-Array [
+[
   "20200101-first-adr",
   "package1/20200101-first-adr",
   "20200102-adr-only-with-date",
@@ -82,9 +82,9 @@ Array [
 `;
 
 exports[`E2E tests / RO searchAdrs() all 2`] = `
-Array [
-  Object {
-    "body": Object {
+[
+  {
+    "body": {
       "enhancedMdx": "
 Technical Story: lorem ipsum
 
@@ -115,11 +115,11 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [
+    "deciders": [
       "John Doe",
       "Foo bar",
     ],
-    "file": Object {
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20200101-first-adr.md",
       "relativePath": "docs/adr/20200101-first-adr.md",
     },
@@ -130,14 +130,14 @@ Lorem ipsum.
     "slug": "20200101-first-adr",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [
+    "tags": [
       "foo",
       "bar",
     ],
     "title": "First ADR",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 Technical Story: lorem ipsum
 
@@ -168,11 +168,11 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [
+    "deciders": [
       "John Doe",
       "Foo bar",
     ],
-    "file": Object {
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/packages/package1/adr/20200101-first-adr.md",
       "relativePath": "packages/package1/adr/20200101-first-adr.md",
     },
@@ -183,14 +183,14 @@ Lorem ipsum.
     "slug": "package1/20200101-first-adr",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [
+    "tags": [
       "foo",
       "bar",
     ],
     "title": "First ADR (in package 1)",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Context and Problem Statement
 
@@ -214,8 +214,8 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20200102-adr-only-with-date.md",
       "relativePath": "docs/adr/20200102-adr-only-with-date.md",
     },
@@ -226,11 +226,11 @@ Lorem ipsum.
     "slug": "20200102-adr-only-with-date",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": "ADR only with date",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 This is an introduction paragraph.
 
@@ -265,11 +265,11 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [
+    "deciders": [
       "John Doe",
       "Foo bar",
     ],
-    "file": Object {
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20200102-adr-with-intro.md",
       "relativePath": "docs/adr/20200102-adr-with-intro.md",
     },
@@ -280,14 +280,14 @@ Lorem ipsum.
     "slug": "20200102-adr-with-intro",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [
+    "tags": [
       "foo",
       "bar",
     ],
     "title": "ADR with intro",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Context and Problem Statement
 
@@ -313,10 +313,10 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [
+    "deciders": [
       "John Doe",
     ],
-    "file": Object {
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20200102-adr-without-status.md",
       "relativePath": "docs/adr/20200102-adr-without-status.md",
     },
@@ -327,13 +327,13 @@ Lorem ipsum.
     "slug": "20200102-adr-without-status",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [
+    "tags": [
       "foo",
     ],
     "title": "ADR without status",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "Technical Story: lorem ipsum
 
 ## Context and Problem Statement
@@ -360,11 +360,11 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [
+    "deciders": [
       "John Doe",
       "Foo bar",
     ],
-    "file": Object {
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20200102-adr-without-title.md",
       "relativePath": "docs/adr/20200102-adr-without-title.md",
     },
@@ -375,14 +375,14 @@ Lorem ipsum.
     "slug": "20200102-adr-without-title",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [
+    "tags": [
       "foo",
       "bar",
     ],
     "title": null,
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Context and Problem Statement
 
@@ -407,8 +407,8 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/adr_with_a_WeIrd-filename.md",
       "relativePath": "docs/adr/adr_with_a_WeIrd-filename.md",
     },
@@ -419,11 +419,11 @@ Lorem ipsum.
     "slug": "adr_with_a_WeIrd-filename",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": "ADR with a weird filename",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Context and Problem Statement
 
@@ -445,8 +445,8 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20201028-adr-with-no-metadata.md",
       "relativePath": "docs/adr/20201028-adr-with-no-metadata.md",
     },
@@ -457,11 +457,11 @@ Lorem ipsum.
     "slug": "20201028-adr-with-no-metadata",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": "ADR with no metadata",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "## Context and Problem Statement
 
 Lorem ipsum.
@@ -480,8 +480,8 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20201028-adr-with-no-metadata-no-title.md",
       "relativePath": "docs/adr/20201028-adr-with-no-metadata-no-title.md",
     },
@@ -492,11 +492,11 @@ Lorem ipsum.
     "slug": "20201028-adr-with-no-metadata-no-title",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": null,
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 Technical Story: lorem ipsum
 
@@ -526,11 +526,11 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [
+    "deciders": [
       "John Doe",
       "Foo bar",
     ],
-    "file": Object {
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20201028-adr-without-date.md",
       "relativePath": "docs/adr/20201028-adr-without-date.md",
     },
@@ -541,14 +541,14 @@ Lorem ipsum.
     "slug": "20201028-adr-without-date",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [
+    "tags": [
       "foo",
       "bar",
     ],
     "title": "ADR without date",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 Technical Story: lorem ipsum
 
@@ -578,11 +578,11 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [
+    "deciders": [
       "John Doe",
       "Foo bar",
     ],
-    "file": Object {
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/packages/package1/adr/20201028-adr-without-date.md",
       "relativePath": "packages/package1/adr/20201028-adr-without-date.md",
     },
@@ -593,23 +593,23 @@ Lorem ipsum.
     "slug": "package1/20201028-adr-without-date",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [
+    "tags": [
       "foo",
       "bar",
     ],
     "title": "ADR without date (in package 1)",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Tests
 
-- Classic link: <AdrLink slug=\\"20200101-first-adr\\" status=\\"accepted\\" title=\\"First ADR\\" />
-- Relative link: <AdrLink slug=\\"20200101-first-adr\\" status=\\"accepted\\" title=\\"First ADR\\" />
-- <AdrLink slug=\\"20200101-first-adr\\" status=\\"accepted\\" title=\\"First ADR\\" customLabel=\\"Link with a custom text\\" />
+- Classic link: <AdrLink slug="20200101-first-adr" status="accepted" title="First ADR" />
+- Relative link: <AdrLink slug="20200101-first-adr" status="accepted" title="First ADR" />
+- <AdrLink slug="20200101-first-adr" status="accepted" title="First ADR" customLabel="Link with a custom text" />
 - [External link](https://www.google.com/)
 - Broken link: [20200101-first-adr](20200101-first-adr-BROKEN.md)
-- Link to a package: <AdrLink slug=\\"package1/20200101-first-adr\\" status=\\"accepted\\" title=\\"First ADR (in package 1)\\" package=\\"package1\\" />
+- Link to a package: <AdrLink slug="package1/20200101-first-adr" status="accepted" title="First ADR (in package 1)" package="package1" />
 ",
       "rawMarkdown": "# Links
 
@@ -626,8 +626,8 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20201028-links.md",
       "relativePath": "docs/adr/20201028-links.md",
     },
@@ -638,21 +638,21 @@ Lorem ipsum.
     "slug": "20201028-links",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": "Links",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Context and Problem Statement
 
-Test link with complete slug: <AdrLink slug=\\"package1/20200101-first-adr\\" status=\\"accepted\\" title=\\"First ADR (in package 1)\\" package=\\"package1\\" />
-Test link with partial slug: <AdrLink slug=\\"package1/20200101-first-adr\\" status=\\"accepted\\" title=\\"First ADR (in package 1)\\" package=\\"package1\\" />
-<AdrLink slug=\\"package1/20200101-first-adr\\" status=\\"accepted\\" title=\\"First ADR (in package 1)\\" package=\\"package1\\" customLabel=\\"Custom text and relative path\\" />
+Test link with complete slug: <AdrLink slug="package1/20200101-first-adr" status="accepted" title="First ADR (in package 1)" package="package1" />
+Test link with partial slug: <AdrLink slug="package1/20200101-first-adr" status="accepted" title="First ADR (in package 1)" package="package1" />
+<AdrLink slug="package1/20200101-first-adr" status="accepted" title="First ADR (in package 1)" package="package1" customLabel="Custom text and relative path" />
 
 ## Decision Outcome
 
-- Relates to <AdrLink slug=\\"package1/20201028-links-to-global\\" status=\\"accepted\\" title=\\"Links to global\\" package=\\"package1\\" />
+- Relates to <AdrLink slug="package1/20201028-links-to-global" status="accepted" title="Links to global" package="package1" />
 ",
       "rawMarkdown": "# Links in package
 
@@ -670,8 +670,8 @@ Test link with partial slug: [20200101-first-adr](20200101-first-adr.md)
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/packages/package1/adr/20201028-links-in-package.md",
       "relativePath": "packages/package1/adr/20201028-links-in-package.md",
     },
@@ -682,16 +682,16 @@ Test link with partial slug: [20200101-first-adr](20200101-first-adr.md)
     "slug": "package1/20201028-links-in-package",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": "Links in package",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Test
 
-Test link: <AdrLink slug=\\"package1/20200101-first-adr\\" status=\\"accepted\\" title=\\"First ADR (in package 1)\\" package=\\"package1\\" />
-<AdrLink slug=\\"package1/20200101-first-adr\\" status=\\"accepted\\" title=\\"First ADR (in package 1)\\" package=\\"package1\\" customLabel=\\"Custom text\\" />
+Test link: <AdrLink slug="package1/20200101-first-adr" status="accepted" title="First ADR (in package 1)" package="package1" />
+<AdrLink slug="package1/20200101-first-adr" status="accepted" title="First ADR (in package 1)" package="package1" customLabel="Custom text" />
 ",
       "rawMarkdown": "# Links to another package
 
@@ -704,8 +704,8 @@ Test link: [package1/20200101-first-adr](../../package1/adr/20200101-first-adr.m
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/packages/package2/adr/20201028-links-to-another-package.md",
       "relativePath": "packages/package2/adr/20201028-links-to-another-package.md",
     },
@@ -716,19 +716,19 @@ Test link: [package1/20200101-first-adr](../../package1/adr/20200101-first-adr.m
     "slug": "package2/20201028-links-to-another-package",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": "Links to another package",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Context and Problem Statement
 
-Lorem ipsum. Test link: <AdrLink slug=\\"20200101-first-adr\\" status=\\"accepted\\" title=\\"First ADR\\" />
+Lorem ipsum. Test link: <AdrLink slug="20200101-first-adr" status="accepted" title="First ADR" />
 
 ## Decision Outcome
 
-- Relates to <AdrLink slug=\\"20201028-links\\" status=\\"accepted\\" title=\\"Links\\" />
+- Relates to <AdrLink slug="20201028-links" status="accepted" title="Links" />
 ",
       "rawMarkdown": "# Links to global
 
@@ -744,8 +744,8 @@ Lorem ipsum. Test link: [20200101-first-adr](../../docs/adr/20200101-first-adr.m
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/packages/package1/adr/20201028-links-to-global.md",
       "relativePath": "packages/package1/adr/20201028-links-to-global.md",
     },
@@ -756,11 +756,11 @@ Lorem ipsum. Test link: [20200101-first-adr](../../docs/adr/20200101-first-adr.m
     "slug": "package1/20201028-links-to-global",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": "Links to global",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Context and Problem Statement
 
@@ -785,8 +785,8 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20201028-superseded-adr.md",
       "relativePath": "docs/adr/20201028-superseded-adr.md",
     },
@@ -797,11 +797,11 @@ Lorem ipsum.
     "slug": "20201028-superseded-adr",
     "status": "superseded",
     "supersededBy": "20201029-superseder",
-    "tags": Array [],
+    "tags": [],
     "title": "Superseded ADR",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Context and Problem Statement
 
@@ -826,8 +826,8 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20201029-proposed-adr.md",
       "relativePath": "docs/adr/20201029-proposed-adr.md",
     },
@@ -838,11 +838,11 @@ Lorem ipsum.
     "slug": "20201029-proposed-adr",
     "status": "proposed",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": "Proposed ADR",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Context and Problem Statement
 
@@ -867,8 +867,8 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20201029-rejected-adr.md",
       "relativePath": "docs/adr/20201029-rejected-adr.md",
     },
@@ -879,11 +879,11 @@ Lorem ipsum.
     "slug": "20201029-rejected-adr",
     "status": "rejected",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": "Rejected ADR",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Context and Problem Statement
 
@@ -895,7 +895,7 @@ Lorem ipsum.
 
 ## Links
 
-- Supersedes <AdrLink slug=\\"20201028-superseded-adr\\" status=\\"superseded\\" title=\\"Superseded ADR\\" />
+- Supersedes <AdrLink slug="20201028-superseded-adr" status="superseded" title="Superseded ADR" />
 ",
       "rawMarkdown": "# Superseder
 
@@ -916,8 +916,8 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20201029-superseder.md",
       "relativePath": "docs/adr/20201029-superseder.md",
     },
@@ -928,11 +928,11 @@ Lorem ipsum.
     "slug": "20201029-superseder",
     "status": "accepted",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": "Superseder",
   },
-  Object {
-    "body": Object {
+  {
+    "body": {
       "enhancedMdx": "
 ## Context and Problem Statement
 
@@ -957,8 +957,8 @@ Lorem ipsum.
 ",
     },
     "creationDate": "2020-09-25T16:34:23.000Z",
-    "deciders": Array [],
-    "file": Object {
+    "deciders": [],
+    "file": {
       "absolutePath": "/ABSOLUTE-PATH/ro-project/docs/adr/20201030-draft-adr.md",
       "relativePath": "docs/adr/20201030-draft-adr.md",
     },
@@ -969,7 +969,7 @@ Lorem ipsum.
     "slug": "20201030-draft-adr",
     "status": "draft",
     "supersededBy": null,
-    "tags": Array [],
+    "tags": [],
     "title": "Draft ADR",
   },
 ]

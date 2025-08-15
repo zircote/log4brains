@@ -40,7 +40,7 @@
     "clean:nextjs": "rimraf ./nextjs/.next ./nextjs/.next-export",
     "serve": "serve .log4brains/out",
     "typescript": "tsc --noEmit && cd nextjs && tsc",
-    "test": "jest",
+    "test": "jest --config ./jest.config.cjs",
     "lint": "eslint . --max-warnings=0",
     "storybook": "cd nextjs && cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "prepublishOnly": "yarn build"
@@ -78,7 +78,6 @@
     "typescript": "^5.5.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
     "@storybook/addon-actions": "^6.1.9",
     "@storybook/addon-essentials": "^6.1.9",
     "@storybook/addon-links": "^6.1.9",
@@ -90,8 +89,6 @@
     "@types/socket.io": "^2.1.11",
     "@types/socket.io-client": "^1.4.34",
     "@types/url-parse": "^1.4.3",
-    "babel-jest": "^26.6.0",
-    "babel-loader": "^8.1.0",
     "copyfiles": "^2.4.0",
     "del-cli": "^3.0.1",
     "microbundle": "^0.15.1",
