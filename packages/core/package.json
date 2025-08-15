@@ -1,6 +1,6 @@
 {
   "name": "@log4brains/core",
-  "version": "1.2.0-rc.0",
+  "version": "1.2.0",
   "description": "Log4brains architecture knowledge base core API",
   "keywords": [
     "log4brains"
