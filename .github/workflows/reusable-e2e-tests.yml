@@ -35,8 +35,10 @@ jobs:
         with:
           node-version-file: ${{ inputs.node-version-file }}
           node-version: ${{ inputs.node-version }}
-          cache: yarn
-          cache-dependency-path: yarn.lock
+      - name: Enable Yarn via Corepack
+        run: |
+          corepack enable
+          corepack prepare yarn@1.22.22 --activate
 
       # But we do install log4brains from the registry
       - run: npm install -g ${{ inputs.npm-package-fullname }}

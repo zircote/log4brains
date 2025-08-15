@@ -66,8 +66,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc # current LTS
-          cache: yarn
-          cache-dependency-path: yarn.lock
+          registry-url: https://registry.npmjs.org/ # needed by lerna to push to NPM
+      - name: Enable Yarn via Corepack
+        run: |
+          corepack enable
+          corepack prepare yarn@1.22.22 --activate
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc # current LTS
           registry-url: https://registry.npmjs.org/ # needed by lerna to push to NPM
       - run: yarn install --frozen-lockfile
       - run: yarn build

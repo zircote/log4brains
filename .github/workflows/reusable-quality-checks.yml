@@ -13,8 +13,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc # current LTS
-          cache: yarn
-          cache-dependency-path: yarn.lock
+      - name: Enable Yarn via Corepack
+        run: |
+          corepack enable
+          corepack prepare yarn@1.22.22 --activate
       - run: yarn install --frozen-lockfile
 
       # TODO: make dev & test work without having to build everything (inspiration: https://github.com/Izhaki/mono.ts)

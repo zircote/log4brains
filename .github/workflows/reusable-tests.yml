@@ -36,8 +36,10 @@ jobs:
         with:
           node-version-file: ${{ inputs.node-version-file }}
           node-version: ${{ inputs.node-version }}
-          cache: yarn
-          cache-dependency-path: yarn.lock
+      - name: Enable Yarn via Corepack
+        run: |
+          corepack enable
+          corepack prepare yarn@1.22.22 --activate
       - run: yarn install --frozen-lockfile --network-timeout 100000 # custom network-timeout for Windows runners
 
       - name: Check for yarn.lock changes
