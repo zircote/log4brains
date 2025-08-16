@@ -13,13 +13,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   });
   return {
     paths,
-    fallback:
-      process.env.LOG4BRAINS_PHASE === "initial-build" ? "blocking" : false
+    // Always allow on-demand generation for unknown slugs.
+    // This ensures nested package ADRs (e.g., cab/...) resolve both during
+    // preview and after static export even if they were not present at build time.
+    fallback: "blocking",
   };
 };
 
 export const getStaticProps: GetStaticProps<AdrSceneProps> = async ({
-  params
+  params,
 }) => {
   const l4bInstance = getLog4brainsInstance();
 
@@ -27,7 +29,10 @@ export const getStaticProps: GetStaticProps<AdrSceneProps> = async ({
     return { notFound: true };
   }
 
-  const currentSlug = (params.slug as string[]).join("/");
+  const parts = Array.isArray(params.slug)
+    ? (params.slug).map((p) => decodeURIComponent(p))
+    : [decodeURIComponent(String(params.slug))];
+  const currentSlug = parts.join("/");
   const currentAdr = await l4bInstance.getAdrBySlug(currentSlug);
   if (!currentAdr) {
     return { notFound: true };
@@ -42,8 +47,8 @@ export const getStaticProps: GetStaticProps<AdrSceneProps> = async ({
           ? await l4bInstance.getAdrBySlug(currentAdr.supersededBy)
           : undefined
       ),
-      l4bVersion: getConfig().serverRuntimeConfig.VERSION
+      l4bVersion: getConfig().serverRuntimeConfig.VERSION,
     },
-    revalidate: 1
+    revalidate: 1,
   };
 };

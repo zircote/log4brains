@@ -3,7 +3,6 @@
 import fs, { promises as fsP } from "fs";
 import terminalLink from "terminal-link";
 import chalk from "chalk";
-import execa from "execa";
 import mkdirp from "mkdirp";
 import yaml from "yaml";
 import path from "path";
@@ -11,6 +10,7 @@ import moment from "moment-timezone";
 import type { AppConsole } from "@log4brains/cli-common";
 import { FailureExit } from "@log4brains/cli-common";
 import { replaceAllInFile } from "../utils";
+import { Log4brains } from "@log4brains/core";
 
 const assetsPath = path.resolve(path.join(__dirname, "../assets")); // only one level up because bundled with microbundle
 const docLink = "https://github.com/thomvaill/log4brains";
@@ -58,7 +58,7 @@ export class InitCommand {
       "./doc/architecture-decisions",
       "./adr",
       "./adrs",
-      "./architecture-decisions"
+      "./architecture-decisions",
     ];
     // eslint-disable-next-line no-restricted-syntax
     for (const possiblePath of usualPaths) {
@@ -132,14 +132,13 @@ export class InitCommand {
             {
               name: "Simple project (only one ADR folder)",
               value: "mono",
-              short: "Mono-package project"
+              short: "Mono-package project",
             },
             {
-              name:
-                "Multi-package project (one ADR folder per package + a global one)",
+              name: "Multi-package project (one ADR folder per package + a global one)",
               value: "multi",
-              short: "Multi-package project"
-            }
+              short: "Multi-package project",
+            },
           ]
         );
 
@@ -206,7 +205,7 @@ export class InitCommand {
         packages.push({
           name: pkgName,
           path: forceUnixPath(pkgCodeFolder),
-          adrFolder: forceUnixPath(pkgAdrFolder)
+          adrFolder: forceUnixPath(pkgAdrFolder),
         });
         oneMorePackage = await this.console.askYesNoQuestion(
           `We are done with package #${packageNumber}. Do you want to add another one?`,
@@ -221,8 +220,8 @@ export class InitCommand {
         name,
         tz: moment.tz.guess(),
         adrFolder: forceUnixPath(adrFolder),
-        packages
-      }
+        packages,
+      },
     };
   }
 
@@ -233,26 +232,26 @@ export class InitCommand {
     source: string,
     replacements: [string, string][] = []
   ): Promise<string> {
-    const slug = (
-      await execa(
-        "log4brains",
-        [
-          "adr",
-          "new",
-          "--quiet",
-          "--from",
-          forceUnixPath(path.join(assetsPath, source)),
-          `"${title}"`
-        ],
-        { cwd }
-      )
-    ).stdout;
+    // Use core API instead of spawning a child process to avoid stdout capture issues
+    const l4b = Log4brains.createFromCwd(cwd);
+    const slug = await l4b.generateAdrSlug(title);
 
+    const adrDto = await l4b.createAdrFromTemplate(slug, title);
+
+    // Overwrite content with our seeded template file
+    const templatePath = forceUnixPath(path.join(assetsPath, source));
+    const adrAbsolutePath = forceUnixPath(adrDto.file.absolutePath);
+
+    // Read and write using Node fs to ensure file exists before replacements
+    const content = await fsP.readFile(templatePath, "utf-8");
+    await fsP.writeFile(adrAbsolutePath, content, "utf-8");
+
+    // Perform token replacements (date, cross-links, etc.)
     await replaceAllInFile(
       forceUnixPath(path.join(cwd, adrFolder, `${slug}.md`)),
       [
         ["{DATE_YESTERDAY}", moment().subtract(1, "days").format("YYYY-MM-DD")], // we use yesterday's date so that we are sure new ADRs will appear on top
-        ...replacements
+        ...replacements,
       ]
     );
 
@@ -361,11 +360,10 @@ export class InitCommand {
     );
     await this.copyFileIfAbsent(cwd, adrFolder, "README.md");
 
-    // List existing ADRs
+    // List existing ADRs (before creating starter ones)
     this.console.updateSpinner("Creating your first ADRs...");
-    const adrListRes = await execa("log4brains", ["adr", "list", "--raw"], {
-      cwd
-    });
+    const l4b = Log4brains.createFromCwd(cwd);
+    const existingAdrs = await l4b.searchAdrs();
 
     // Create Log4brains ADR
     const l4bAdrSlug = await this.createAdr(
@@ -376,7 +374,7 @@ export class InitCommand {
     );
 
     // Create MADR ADR if there was no ADR in the repository
-    if (!adrListRes.stdout) {
+    if (existingAdrs.length === 0) {
       await this.createAdr(
         cwd,
         adrFolder,
