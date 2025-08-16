@@ -2,6 +2,8 @@ import chalk from "chalk";
 import { ConsoleCapturer } from "@log4brains/cli-common";
 import { Log4brains } from "@log4brains/core";
 import path from "path";
+import fs from "fs";
+import os from "os";
 
 let l4bInstance: Log4brains;
 export function getL4bInstance(): Log4brains {
@@ -11,8 +13,23 @@ export function getL4bInstance(): Log4brains {
   return l4bInstance;
 }
 
+let cachedNextDir: string | null = null;
 export function getNextJsDir(): string {
-  return path.resolve(path.join(__dirname, "../nextjs")); // only one level up because bundled with microbundle
+  if (cachedNextDir) return cachedNextDir;
+  // Resolve @log4brains/web package root via Node
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
+    const webPkgPath = require.resolve("@log4brains/web/package.json", {
+      paths: [__dirname]
+    });
+    const webRoot = path.dirname(webPkgPath);
+    cachedNextDir = path.join(webRoot, "nextjs");
+    return cachedNextDir;
+  } catch {
+    // Fallback: relative to this compiled file (useful when running from repo)
+    cachedNextDir = path.resolve(path.join(__dirname, "../nextjs"));
+    return cachedNextDir;
+  }
 }
 
 /**

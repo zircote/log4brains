@@ -24,7 +24,7 @@ import { createStyles, makeStyles } from "@mui/styles";
 //   ChevronRight as ChevronRightIcon,
 //   PlaylistAddCheck as PlaylistAddCheckIcon
 // } from "@material-ui/icons";
-import Link from "next/link";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import clsx from "clsx";
 import { AdrMenu } from "./components/AdrMenu";
@@ -270,21 +270,21 @@ export function AdrBrowserLayout({
     <div className={classes.drawerContainer}>
       <Toolbar className={classes.drawerToolbar}>
         <div />
-        <Link href="/" passHref>
-          <IconButton
-            size="small"
-            color="inherit"
-            aria-label="go to homepage"
-            title={`Architecture knowledge base of ${projectName}`}
-          >
-            <img
-              src={`${router?.basePath}/l4b-static/Log4brains-logo.png`}
-              alt="Log4brains logo"
-              width={40}
-              height={40}
-            />
-          </IconButton>
-        </Link>
+        <IconButton
+          component={NextLink}
+          href="/"
+          size="small"
+          color="inherit"
+          aria-label="go to homepage"
+          title={`Architecture knowledge base of ${projectName}`}
+        >
+          <img
+            src={`${router?.basePath}/l4b-static/Log4brains-logo.png`}
+            alt="Log4brains logo"
+            width={40}
+            height={40}
+          />
+        </IconButton>
         <IconButton
           size="small"
           color="inherit"
@@ -306,12 +306,14 @@ export function AdrBrowserLayout({
         </Fade>
       </div>
 
-      <Grow in={adrs !== undefined} style={{ transformOrigin: "center left" }}>
-        <AdrMenu
-          adrs={adrs}
-          currentAdrSlug={currentAdr?.slug}
-          className={classes.adrMenu}
-        />
+      <Grow in={Boolean(adrs)} style={{ transformOrigin: "center left" }}>
+        <div>
+          <AdrMenu
+            adrs={adrs}
+            currentAdrSlug={currentAdr?.slug}
+            className={classes.adrMenu}
+          />
+        </div>
       </Grow>
 
       {adrs === undefined && (
@@ -357,38 +359,40 @@ export function AdrBrowserLayout({
           >
             <MenuIcon />
           </IconButton>
-          <Link href="/">
+          <NoSsr>
             <div className={classes.appBarTitle}>
               <div>
-                <img
-                  src={`${router?.basePath}/l4b-static/Log4brains-logo-dark.png`}
-                  alt="Log4brains logo"
-                  width={50}
-                  height={50}
-                />
+                <MuiLink component={NextLink} href="/">
+                  <img
+                    src={`${router?.basePath}/l4b-static/Log4brains-logo-dark.png`}
+                    alt="Log4brains logo"
+                    width={50}
+                    height={50}
+                  />
+                </MuiLink>
               </div>
               <div>
-                <Link href="/" passHref>
-                  <MuiLink
-                    variant="h6"
-                    noWrap
-                    className={classes.appBarTitleLink}
-                  >
-                    {projectName}
-                  </MuiLink>
-                </Link>
-                <Link href="/" passHref>
-                  <MuiLink
-                    variant="body2"
-                    noWrap
-                    className={classes.appBarTitleLink}
-                  >
-                    Architecture knowledge base
-                  </MuiLink>
-                </Link>
+                <MuiLink
+                  component={NextLink}
+                  href="/"
+                  variant="h6"
+                  noWrap
+                  className={classes.appBarTitleLink}
+                >
+                  {projectName}
+                </MuiLink>
+                <MuiLink
+                  component={NextLink}
+                  href="/"
+                  variant="body2"
+                  noWrap
+                  className={classes.appBarTitleLink}
+                >
+                  Architecture knowledge base
+                </MuiLink>
               </div>
             </div>
-          </Link>
+          </NoSsr>
           <div className={classes.layoutLeftCol} />
           <div className={clsx(classes.layoutCenterCol)}>
             <Backdrop open={searchOpen} className={classes.searchBackdrop} />

@@ -7,7 +7,8 @@ import {
   Divider,
   Tooltip,
   Link as MuiLink,
-  Hidden
+  Hidden,
+  NoSsr
 } from "@mui/material";
 import {
   ArrowBack as ArrowBackIcon,
@@ -108,10 +109,7 @@ export function AdrScene({ projectName, currentAdr }: AdrSceneProps) {
   return (
     <>
       <Head>
-        <title>
-          {currentAdr.title || "Untitled"} ADR - Architecture knowledge base of{" "}
-          {projectName}
-        </title>
+        <title>{`${currentAdr.title || "Untitled"} ADR - Architecture knowledge base of ${projectName}`}</title>
       </Head>
       <TwoColContent
         rightColContent={<MarkdownToc content={mdContent} levelStart={2} />}
@@ -134,20 +132,18 @@ export function AdrScene({ projectName, currentAdr }: AdrSceneProps) {
 
         <Divider className={classes.bottomNavDivider} />
 
-        <nav className={classes.bottomNav}>
+        <NoSsr>
+          <nav className={classes.bottomNav}>
           {adrNav.previousAdr ? (
-            <Link href={buildAdrUrl(adrNav.previousAdr)} passHref>
-              <Tooltip
-                title={adrNav.previousAdr.title || ""}
-                aria-label="previous"
-              >
-                <Button startIcon={<ArrowBackIcon />}>
-                  <Hidden xsDown implementation="css">
-                    Previous
-                  </Hidden>
-                </Button>
-              </Tooltip>
-            </Link>
+            <Tooltip title={adrNav.previousAdr.title || ""} aria-label="previous">
+              <span>
+                <Link href={buildAdrUrl(adrNav.previousAdr)} legacyBehavior passHref>
+                  <Button component="a" startIcon={<ArrowBackIcon />}>
+                    <Hidden xsDown implementation="css">Previous</Hidden>
+                  </Button>
+                </Link>
+              </span>
+            </Tooltip>
           ) : (
             <div />
           )}
@@ -161,19 +157,20 @@ export function AdrScene({ projectName, currentAdr }: AdrSceneProps) {
             </Typography>
           </div>
           {adrNav.nextAdr ? (
-            <Link href={buildAdrUrl(adrNav.nextAdr)} passHref>
-              <Tooltip title={adrNav.nextAdr.title || ""} aria-label="next">
-                <Button endIcon={<ArrowForwardIcon />}>
-                  <Hidden xsDown implementation="css">
-                    Next
-                  </Hidden>
-                </Button>
-              </Tooltip>
-            </Link>
+            <Tooltip title={adrNav.nextAdr.title || ""} aria-label="next">
+              <span>
+                <Link href={buildAdrUrl(adrNav.nextAdr)} legacyBehavior passHref>
+                  <Button component="a" endIcon={<ArrowForwardIcon />}>
+                    <Hidden xsDown implementation="css">Next</Hidden>
+                  </Button>
+                </Link>
+              </span>
+            </Tooltip>
           ) : (
             <div />
           )}
-        </nav>
+          </nav>
+        </NoSsr>
       </TwoColContent>
     </>
   );

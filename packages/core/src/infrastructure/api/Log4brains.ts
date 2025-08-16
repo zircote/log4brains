@@ -1,4 +1,4 @@
-import { AwilixContainer } from "awilix";
+import type { AwilixContainer } from "awilix";
 import { buildContainer } from "@src/infrastructure/di";
 import open from "open";
 import launchEditor from "launch-editor";

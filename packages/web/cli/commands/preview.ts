@@ -22,7 +22,15 @@ export async function previewCommand(
   adrSlug?: string
 ): Promise<void> {
   process.env.NEXT_TELEMETRY_DISABLED = "1";
-  const dev = process.env.NODE_ENV === "development";
+  // Disable React Fast Refresh for global preview to avoid import.meta in CJS helpers
+  process.env.__NEXT_DISABLE_REACT_REFRESH = "true";
+  process.env.NEXT_DISABLE_REACT_REFRESH = "true";
+  // Treat undefined NODE_ENV as development for better DX in global preview
+  // In global installs (next app under node_modules), force production-like dev to avoid
+  // React Fast Refresh rewriting CJS helpers in node_modules.
+  const nextDir = getNextJsDir();
+  const isGlobalInstall = nextDir.includes("node_modules");
+  const dev = !isGlobalInstall && (process.env.NODE_ENV === "development" || !process.env.NODE_ENV);
 
   appConsole.startSpinner("Log4brains is starting...");
   appConsole.debug(`Run \`next ${dev ? "dev" : "start"}\`...`);
@@ -37,15 +45,22 @@ export async function previewCommand(
   });
 
   /**
-   * #NEXTJS-HACK
-   * We override this private property to set the incrementalCache in "dev" mode (ie. it disables it)
-   * to make our Hot Reload feature work.
-   * In fact, we trigger a page re-render every time an ADR changes and we absolutely need up-to-date data on every render.
-   * The "serve stale data while revalidating" Next.JS policy is not suitable for us.
+   * #NEXTJS-HACK (best-effort)
+   * Historically we disabled Next.js incremental cache in dev to ensure fresh data on each render.
+   * Next internals changed around v15, so we guard access and skip if not present.
    */
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  app.server.incrementalCache.incrementalOptions.dev = true; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+  try {
+    const anyApp: any = app as any;
+    const incCache = anyApp?.server?.incrementalCache;
+    const incOpts = incCache?.incrementalOptions;
+    if (incOpts) {
+      incOpts.dev = true;
+    } else {
+      // Newer Next versions: nothing to tweak, continue without failing
+    }
+  } catch {
+    // Ignore if internals differ; preview will proceed without the tweak
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   const srv = createServer(app.getRequestHandler());

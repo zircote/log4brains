@@ -26,7 +26,7 @@ import {
   CropFree as CropFreeIcon,
   Add as AddIcon
 } from "@mui/icons-material";
-import Link from "next/link";
+import NextLink from "next/link";
 import clsx from "clsx";
 import { Log4brainsMode, Log4brainsModeContext } from "../../../../contexts";
 import { AdrStatusChip } from "../../../../components";
@@ -245,15 +245,16 @@ export function AdrMenu({ adrs, currentAdrSlug, className, ...props }: Props) {
               </TimelineSeparator>
               <TimelineContent>
                 <div className={classes.timelineContentContainer}>
-                  <Link href={`/adr/${adr.slug}`} passHref>
-                    <MuiLink
-                      className={clsx(classes.adrLink, {
-                        [classes[
-                          `${adr.status}Link` as keyof typeof classes
-                        ]]: true
-                      })}
-                      variant="body2"
-                    >
+                  <MuiLink
+                    component={NextLink}
+                    href={`/adr/${adr.slug}`}
+                    className={clsx(classes.adrLink, {
+                      [classes[
+                        `${adr.status}Link` as keyof typeof classes
+                      ]]: true
+                    })}
+                    variant="body2"
+                  >
                       <span className={classes.adrTitle}>
                         {adr.title || "Untitled"}
                       </span>
@@ -267,7 +268,6 @@ export function AdrMenu({ adrs, currentAdrSlug, className, ...props }: Props) {
                         </span>
                       ) : null}
                     </MuiLink>
-                  </Link>
                   <div>
                     <AdrStatusChip
                       status={adr.status}

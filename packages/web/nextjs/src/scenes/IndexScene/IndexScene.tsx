@@ -47,7 +47,7 @@ export function IndexScene({ projectName, markdown }: IndexSceneProps) {
   return (
     <>
       <Head>
-        <title>Architecture knowledge base of {projectName}</title>
+        <title>{`Architecture knowledge base of ${projectName}`}</title>
         <meta
           name="description"
           content={`This architecture knowledge base contains all the Architecture Decision Records (ADR) of the ${projectName} project`}

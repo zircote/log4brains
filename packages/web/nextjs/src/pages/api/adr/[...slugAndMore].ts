@@ -1,12 +1,13 @@
 import { Log4brainsError } from "@log4brains/core";
 import { NextApiRequest, NextApiResponse } from "next";
-import { AppConsole } from "@log4brains/cli-common";
 import { getLog4brainsInstance } from "../../../lib/core-api";
 
 // TODO: get the global singleton of AppConsole instead of re-creating it
 const debug = !!process.env.DEBUG;
 const dev = process.env.NODE_ENV === "development";
-const appConsole = new AppConsole({ debug, traces: debug || dev });
+const appConsole = {
+  warn: (...args: unknown[]) => console.warn("[log4brains]", ...args)
+};
 
 export default async (
   req: NextApiRequest,
